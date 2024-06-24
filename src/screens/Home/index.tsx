@@ -24,7 +24,7 @@ export default function Home() {
 
       <Text style={styles.eventDate}>{formatDate(new Date())}</Text>
 
-      <View style={styles.containerInput}>
+      <View style={styles.form}>
         <TextInput
           style={styles.input}
           placeholder="Nome do participante"
