@@ -1,9 +1,10 @@
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 
+import Participant from "./components/Participant";
 import { styles } from "./style";
 
 const handleParticipantAdd = (): void => {
-  Alert.alert("Você clicou no botão!");
+  Alert.alert("Participante adicionado!");
 };
 
 export default function Home() {
@@ -31,10 +32,16 @@ export default function Home() {
           placeholderTextColor="#6B6B6B"
         />
 
-        <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+        <TouchableOpacity
+          style={[styles.button, {opacity: 0.8}]}
+          onPress={handleParticipantAdd}
+        >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
+
+      <Participant name="Júlia" />
+      <Participant name="Victor" />
     </View>
   );
 }
