@@ -2,12 +2,12 @@ import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { styles } from "./style";
 
-const handleParticipantAdd = () => {
+const handleParticipantAdd = (): void => {
   Alert.alert("Você clicou no botão!");
 };
 
 export default function Home() {
-  function formatDate(date: Date) {
+  function formatDate(date: Date): string {
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
       year: "numeric",
