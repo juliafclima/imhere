@@ -4,12 +4,10 @@ import { styles } from "./style";
 
 interface PartipantProps {
   name: string;
+  onRemove: () => void;
 }
 
-export default function Participant({ name }: PartipantProps) {
-  const handleParticipantRemove = () => {
-    Alert.alert("Participante excluido!");
-  };
+export default function Participant({ name, onRemove }: PartipantProps) {
 
   return (
     <View style={styles.container}>
@@ -17,7 +15,7 @@ export default function Participant({ name }: PartipantProps) {
 
       <TouchableOpacity
         style={[styles.button, { opacity: 0.8 }]}
-        onPress={handleParticipantRemove}
+        onPress={onRemove}
       >
         <Text style={styles.buttonText}>-</Text>
       </TouchableOpacity>

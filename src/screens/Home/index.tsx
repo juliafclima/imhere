@@ -1,13 +1,29 @@
-import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import Participant from "./components/Participant";
 import { styles } from "./style";
 
-const handleParticipantAdd = (): void => {
-  Alert.alert("Participante adicionado!");
-};
-
 export default function Home() {
+  const participants = [
+    "Júlia",
+    "Rodrigo",
+    "Vini",
+    "Diego",
+    "Biro",
+    "Ana",
+    "Isa",
+    "Jack",
+    "Mayk",
+    "João",
+  ];
+
   function formatDate(date: Date): string {
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
@@ -17,6 +33,14 @@ export default function Home() {
     };
 
     return new Intl.DateTimeFormat("pt-BR", options).format(date);
+  }
+
+  function handleParticipantAdd() {
+    Alert.alert("Você clicou no botão de Adicionar!");
+  }
+
+  function handleParticipantRemove(name: string) {
+    Alert.alert(`Você clicou em remover o participante ${name}`);
   }
 
   return (
@@ -33,15 +57,33 @@ export default function Home() {
         />
 
         <TouchableOpacity
-          style={[styles.button, {opacity: 0.8}]}
+          style={[styles.button, { opacity: 0.8 }]}
           onPress={handleParticipantAdd}
         >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
 
-      <Participant name="Júlia" />
-      <Participant name="Victor" />
+      <FlatList
+        data={participants}
+        keyExtractor={(item) => item}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={() => (
+          <Text style={styles.listEmptyText}>
+            Ninguém chegou no evento ainda? Adicione participantes a sua lista
+            de presença.
+          </Text>
+        )}
+        renderItem={({ item }) => (
+          <Participant
+            key={item}
+            name={item}
+            onRemove={() => {
+              handleParticipantRemove(item);
+            }}
+          />
+        )}
+      />
     </View>
   );
 }
