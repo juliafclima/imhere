@@ -36,11 +36,31 @@ export default function Home() {
   }
 
   function handleParticipantAdd() {
-    Alert.alert("Você clicou no botão de Adicionar!");
+    if (participants.includes("Rodrigo")) {
+      return Alert.alert(
+        "Participante existe",
+        "Já existe um participante na lista com esse nome."
+      );
+    }
+
+    Alert.alert("Adicionado!", "Você clicou no botão adicionar");
   }
 
   function handleParticipantRemove(name: string) {
-    Alert.alert(`Você clicou em remover o participante ${name}`);
+    Alert.alert(
+      "Remover",
+      `Tem certeza que quer deletar o participante ${name}?`,
+      [
+        {
+          text: "Não",
+          style: "cancel",
+        },
+        {
+          text: "Sim",
+          onPress: () => Alert.alert("Deletado!"),
+        },
+      ]
+    );
   }
 
   return (
